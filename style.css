@@ -665,6 +665,25 @@ nav {
   color: var(--text-muted);
   line-height: 1.65;
   flex: 1;
+  margin-bottom: 20px;
+}
+
+.project-link {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  padding: 7px 16px;
+  border-radius: 6px;
+  align-self: flex-start;
+  transition: background var(--transition), color var(--transition);
+}
+
+.project-link:hover {
+  background: var(--accent);
+  color: var(--bg);
 }
 
 /* =========================================
