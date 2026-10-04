@@ -928,3 +928,13 @@ footer a:hover { text-decoration: underline; }
     align-items: flex-start;
   }
 }
+
+/* =========================================
+   EMAIL LISTS (two addresses side by side)
+   ========================================= */
+.email-sep { margin: 0 8px; }
+
+@media (max-width: 700px) {
+  /* stack the two addresses instead of leaving a stray dot */
+  .email-sep { display: block; height: 0; margin: 0; overflow: hidden; }
+}
