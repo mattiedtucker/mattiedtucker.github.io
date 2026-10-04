@@ -604,13 +604,71 @@ nav {
    ========================================= */
 #portfolio {}
 
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+.portfolio-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
+.portfolio-head .section-title { margin-bottom: 0; }
+
+.scroll-btns { display: flex; gap: 8px; }
+
+.scroll-btn {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), opacity var(--transition);
+}
+
+.scroll-btn:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.scroll-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* One row of cards that scrolls sideways */
+.portfolio-grid {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  /* room for the hover lift and glow, which the scroll area would otherwise clip */
+  padding: 16px 4px 24px;
+  margin: 0 -4px;
+  scroll-padding-left: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hover) transparent;
+}
+
+.portfolio-grid::-webkit-scrollbar { height: 8px; }
+.portfolio-grid::-webkit-scrollbar-track { background: transparent; }
+.portfolio-grid::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 4px;
+}
+.portfolio-grid::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+
 .project-card {
+  flex: 0 0 360px;
+  scroll-snap-align: start;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -839,9 +897,6 @@ footer a:hover { text-decoration: underline; }
    RESPONSIVE
    ========================================= */
 @media (max-width: 900px) {
-  .portfolio-grid {
-    grid-template-columns: 1fr 1fr;
-  }
   .about-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -894,8 +949,8 @@ footer a:hover { text-decoration: underline; }
     grid-template-columns: 1fr;
   }
 
-  .portfolio-grid {
-    grid-template-columns: 1fr;
+  .project-card {
+    flex-basis: 84%;
   }
 
   .hero-grid {
